@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Yeseva+One&display=swap" rel="stylesheet")
+        link(rel="stylesheet",type="text/css", href="/css/style.css")
+        script(src="/js/modal.js" defer)
+        title #{pageTitle} | Wetube
+    body
+        include includes/header.pug 
+        section(class="bg-primary-400 padding-block-700")
+            div(class="container")
+                h2(class="fs-600")=pageTitle
+                block content
+        include includes/footer.pug

@@ -1,0 +1,8 @@
+extends main
+
+block content
+    form(class="flow" style="--flow-spacer: 2rem;" method="post")
+        input(type="text" required placeholder="title" name="title" maxlength=80 value=`${video.title}`)
+        input(type="text" required placeholder="description" name="description" minLength=20 value=`${video.description}`)
+        input(type="text" required placeholder="hashtags, separate comma" name="hashtags" value=`${video.hashtags}`)
+        button(class="button") enter title

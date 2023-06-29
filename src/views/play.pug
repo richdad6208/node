@@ -1,0 +1,14 @@
+extends main
+include ../mixins/video
+
+block content 
+    div(class="flow | text-align-right")
+        +video(video)
+        a(class="button" href=`/video/${id}/edit`) Edit  
+        a(class="button modalButton" data-type="warn" href="#a") Delete
+        dialog(class="modalDeleteVideo | flow") 
+            p(style="color:black;font-size:1.5rem") are you sure to delete? 
+            a(class="button modalOk" data-type="warn" href=`/video/${id}/delete`) ok 
+            button(class="button modalNo") no 
+
+        

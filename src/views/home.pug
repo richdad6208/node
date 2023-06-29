@@ -1,0 +1,24 @@
+extends main
+include ../mixins/video
+
+block content 
+        section
+            div(class="container")    
+                div(class="flow")    
+                    a(class="button" href="/video/upload") UPLOAD
+                    each video in videos
+                        +video(video)
+                    else 
+                        li(style="list-style:none;") "sorry. nothing video"
+                    
+                    
+                    //-     ul(class="video-list | bg-accent-100" role="list")
+                    //-         li title: #{video.title}
+                    //-         li description: #{video.description}
+                    //-         li hashtags: #{video.hashtags}
+                    //-         li createdAt: #{video.createdAt}
+                    //-         li view: #{video.meta.view}
+                    //-         li rating: #{video.meta.rating  }
+                    //- else 
+                    //-     li(style="list-style:none;") "sorry. nothing video"
+                    

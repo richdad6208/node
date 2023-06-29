@@ -1,0 +1,8 @@
+mixin video(video)
+    a(class="block" href=`/video/${video.id}`)
+        h1(class="fs-500 text-align-center fw-bold")=video.title
+        ul(class="video-list | bg-accent-100 flow" style="--flow-spacer: 1rem" role="list")    
+            li description: #{video.description}
+            each hashtag in video.hashtags 
+                li=hashtag
+        

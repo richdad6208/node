@@ -1,0 +1,307 @@
+:root {
+  --fs-100: 0.5rem;
+  --fs-200: 0.75rem;
+  --fs-300: 1rem;
+  --fs-400: 1.5rem;
+  --fs-500: 2rem;
+  --fs-600: 2.5rem;
+  --fs-700: 3rem;
+  --fs-800: 3.5rem;
+  --fs-900: 4rem;
+
+  --size-100: 0.5rem;
+  --size-200: 0.75rem;
+  --size-300: 1rem;
+  --size-400: 2rem;
+  --size-500: 3rem;
+  --size-600: 4rem;
+  --size-700: 5rem;
+  --size-800: 6rem;
+  --size-900: 7rem;
+
+  --crl-accent-100: hsl(180, 100%, 35%);
+  --crl-accent-200: hsl(180, 100%, 38%);
+
+  --crl-primary-300: hsl(0, 68%, 52%);
+  --crl-primary-400: hsl(0, 68%, 42%);
+  --crl-neutral-100: hsl(0, 0, 100%);
+  --crl-neutral-800: hsl(250, 36%, 23%);
+  --crl-neutral-900: hsl(0, 0%, 0%);
+  --ff-primary: "Josefin Sans", "Noto Sans KR", sans-serif;
+  --ff-accent: "Yeseva One", cursive;
+
+  --fw-bold: 700;
+  --fw-regular: 400;
+  --fw-light: 300;
+}
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+/* Set core body defaults */
+html,
+body {
+  height: 100%;
+}
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* general styling */
+
+body {
+  color: white;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-300);
+}
+
+h1 {
+  font-size: 2rem;
+}
+input {
+  display: block;
+  border-radius: 100vmax;
+  border: 0;
+  padding: var(--size-100) var(--size-200);
+  color: black;
+}
+/* primary-navigation */
+
+.nav-list {
+  display: flex;
+  gap: var(--size-200);
+}
+.nav-list a {
+  padding: var(--size-300);
+}
+/* home content */
+
+.home-content {
+  height: 100%;
+}
+
+/* button */
+
+.button {
+  display: inline-flex;
+  background: blueviolet;
+  padding: var(--size-100) var(--size-400);
+  border: 0;
+  border-radius: 100vmax;
+  color: bold;
+  font-weight: bold;
+}
+.button[data-type="warn"] {
+  background: yellow;
+  color: blueviolet;
+}
+/* card */
+.card {
+  border: 3px solid violet;
+}
+.card__body {
+  font-size: 1.5rem;
+  color: lightgray;
+}
+.card a {
+  color: violet;
+}
+
+/* video-list */
+
+.video-list {
+  padding-block: var(--size-500);
+  text-align: center;
+  margin-inline: auto;
+  box-shadow: 0 0 0.5em 0 white;
+  font-size: var(--fs-400);
+  text-align: left;
+  border-radius: var(--size-200);
+  font-weight: var(--fw-bold);
+}
+.video-list:hover {
+  background-color: var(--crl-accent-200);
+}
+.video-list li {
+  margin-inline: auto;
+  width: 30ch;
+  word-break: keep-all;
+}
+.modalDeleteVideo {
+  margin: auto;
+  padding: 5em;
+}
+.modalDeleteVideo :is(button, a) {
+  margin-inline-start: 1em;
+  cursor: pointer;
+}
+.modalDeleteVideo::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* utility */
+
+.container {
+  --max-width: 1100px;
+  --padding: 1rem;
+
+  width: min(100% - var(--padding) * 2, var(--max-width));
+  margin-inline: auto;
+}
+
+.flow > :not(:first-child) {
+  margin-block-start: var(--flow-spacer, 3rem);
+}
+.margin-inline-auto {
+  margin-inline: auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  color: white;
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.text-align-center {
+  text-align: center;
+}
+.text-align-left {
+  text-align: left;
+}
+.text-align-right {
+  text-align: right;
+}
+
+.flex-column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fs-primary-heading {
+  font-size: var(--fs-700);
+}
+
+.fs-100 {
+  font-size: var(--fs-100);
+}
+.fs-200 {
+  font-size: var(--fs-200);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-900 {
+  font-size: var(--fs-900);
+}
+
+.fw-bold {
+  font-size: 700;
+}
+.fw-regular {
+  font-size: 400;
+}
+.fw-light {
+  font-size: 300;
+}
+.bg-accent-100 {
+  background-color: var(--crl-accent-100);
+}
+.bg-primary-300 {
+  background-color: var(--crl-primary-300);
+}
+.bg-primary-400 {
+  background-color: var(--crl-primary-400);
+}
+.bg-neutral-800 {
+  background-color: var(--crl-neutral-800);
+}
+.padding-block-300 {
+  padding-block: var(--size-300);
+}
+.padding-block-500 {
+  padding-block: var(--size-500);
+}
+.padding-block-700 {
+  padding-block: var(--size-700);
+}
