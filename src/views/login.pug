@@ -1,0 +1,17 @@
+extends main.pug
+
+block content
+    if errorMessage
+        p=errorMessage
+    form(method="post" class="join")
+        label(class="join__label" for="username") 아이디
+        input(class="join__input" name="username" id="username" type="text" required)
+        label(class="join__label" for="password") 비밀번호       
+        input(class="join__input" name="password" id="password" type="password" required)
+        input(type="submit" class="button join__button" value="OK")
+        a(href="/user/github/start" style="display:block;grid-column:1/2") 
+            img(src="../images/icon-git.png" style="width:50px;")
+    div(class="padding-block-700")    
+        hr
+        p 계정이 없으세요? 
+        a(href="join") 계정 만들러 가기&rarr; 

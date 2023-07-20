@@ -190,6 +190,18 @@ input {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.join {
+  display: grid;
+  grid-template-columns: max-content 50%;
+  row-gap: 1rem;
+  align-items: center;
+}
+.user {
+  background: lightskyblue;
+  width: 20rem;
+  padding: 2em;
+  font-size: 1.2rem;
+}
 /* utility */
 
 .container {
@@ -211,6 +223,13 @@ input {
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: 1rem;
   color: white;
+}
+.grid-two-columns {
+  display: grid;
+  grid-template-columns: var(--grid-column-left, 1fr) var(
+      --grid-column-right,
+      1fr
+    );
 }
 .block {
   display: block;

@@ -1,0 +1,8 @@
+mixin user(user) 
+    div(class="user")
+        ul(class="user__list" role="list")
+            li(class="user__item") 아이디: #{user.username}
+            li(class="user__item") 비밀번호: #{user.password}
+            li(class="user__item") 이메일: #{user.email}
+            li(class="user__item") 이름: #{user.realname}
+            li(class="user__item") 주소: #{user.address}

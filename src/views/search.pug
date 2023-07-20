@@ -1,6 +1,10 @@
-extends main.pug 
-
+extends main.pug
+include ../mixins/video
 block content 
     form(type="get" class="flow" style="--flow-spacer: 1em")
         input(type="text" name="keyword")
         input(type="submit" class="button" value="search")
+    
+    div 
+        each video in videos
+            +video(video)

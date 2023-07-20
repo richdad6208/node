@@ -10,4 +10,16 @@ header(class="primary-header | bg-primary-300 padding-block-300")
                     li
                         a(href="/video/upload") UPLOAD
                     li
-                        a(href="/search") SEARCH
+                        a(href="/search") SEARCH                    
+                    if loggedIn
+                        li
+                            a(href="/user/edit") PROFILE EDIT
+                        li
+                            a(href="/user/logout") LOGOUT
+                        li
+                            a(href="/profile") #{user.realname}의 프로필
+                    else
+                        li
+                            a(href="/join") JOIN
+                        li
+                            a(href="/login") LOGIN

@@ -1,0 +1,25 @@
+extends main.pug
+
+block content
+    if errorMessage
+        p=errorMessage
+    if errorMessage2
+        p=errorMessage2
+    form(method="post" class="join" action="/join")
+        label(class="join__label" for="username") 아이디
+        input(class="join__input" name="username" id="username" type="text" required)
+        label(class="join__label" for="password") 비밀번호       
+        input(class="join__input" name="password" id="password" type="password" required)
+        label(class="join__label" for="password2") 비밀번호 확인       
+        input(class="join__input" name="password2" id="password2" type="password" required)
+        label(class="join__label" for="email") 이메일      
+        input(class="join__input" name="email" id="email" type="email" required)
+        label(class="join__label" for="realname") 이름       
+        input(class="join__input" name="realname" id="realname" type="text" required)
+        label(class="join__label" for="address") 주소       
+        input(class="join__input" name="address" id="address" type="text" required)
+        input(type="submit" class="button join__button" value="OK")
+    div(class="padding-block-700")    
+        hr
+        p 이미 계정이 있으세요? 
+        a(href="login") 로그인 하러가기&rarr; 

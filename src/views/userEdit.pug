@@ -1,0 +1,11 @@
+extends main 
+
+block content 
+    form(method="POST" class="flow" style="--flow-spacer: 1rem")
+        if(errorMessage)
+            p=errorMessage
+        input(name="username" type="text" placeholder="username" value=user.username)
+        input(name="email" type="email" placeholder="email" value=user.email)
+        input(name="realname" type="text" placeholder="realname" value=user.realname)
+        input(name="address" type="text" placeholder="address" vlaue=user.address)
+        input(type="submit" value="Edit" class="button")

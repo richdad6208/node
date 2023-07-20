@@ -13,7 +13,7 @@ export const play = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id);
     if (!video) {
-      return res.render("404");
+      return res.status(404).render("404");
     } else return res.render("play", { pageTitle: "PLAY VIDEO", video, id });
   } catch {
     return res.redirect("home", { pageTitle: "home" });
@@ -47,7 +47,7 @@ export const getEdit = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id);
     if (!video) {
-      return res.render("404");
+      return res.status(404).render("404");
     } else {
       return res.render("edit", { pageTitle: `edit: ${video.title}`, video });
     }
@@ -76,15 +76,23 @@ export const postEdit = async (req, res) => {
 export const deleteVideo = async (req, res) => {
   const { id } = req.params;
   if (!(await Video.exists({ _id: id }))) {
-    return res.render("404");
+    return res.status(404).render("404");
   } else {
     await Video.findByIdAndDelete(id);
     return res.redirect("/");
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const { keyword } = req.query;
-  console.log(keyword);
-  res.render("search", { pageTitle: "search" });
+  let videos = [];
+  if (keyword) {
+    videos = await Video.find({
+      title: {
+        $regex: new RegExp(`${keyword}`, "i"),
+      },
+    });
+    res.render("search", { pageTitle: `keyword search: ${keyword}`, videos });
+  }
+  res.render("search", { pageTitle: "search", videos });
 };
