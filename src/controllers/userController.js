@@ -10,6 +10,7 @@ export const userList = async (req, res) => {
 export const getJoin = (req, res) => {
   res.render("createAccount", { pageTitle: "create new account" });
 };
+
 export const postJoin = async (req, res) => {
   try {
     const { username, password, password2, email, realname, address } =
@@ -150,6 +151,8 @@ export const logout = (req, res) => {
 export const getEdit = (req, res) => {
   return res.render("userEdit");
 };
+
+// look here =================================
 export const postEdit = async (req, res) => {
   const {
     session: {
@@ -186,3 +189,4 @@ export const postEdit = async (req, res) => {
   req.session.user = fixedUser;
   return res.redirect("/user/edit");
 };
+// look here =================================
