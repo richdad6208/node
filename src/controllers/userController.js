@@ -194,6 +194,32 @@ export const postEdit = async (req, res) => {
 export const getChangePassword = (req, res) => {
   return res.render("user/changePassword", { pageTitle: "Password Change" });
 };
-export const postChangePassword = (req, res) => {
+export const postChangePassword = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { oldPassword, newPassword, newPasswordConfirmation },
+  } = req;
+  if (newPassword !== newPasswordConfirmation) {
+    return res.render("user/changePassword", {
+      pageTitle: "Password Change",
+      errorMessage: "New Password Not Same",
+    });
+  }
+  const comparePassword = await bcrypt.compare(
+    oldPassword,
+    req.session.user.password
+  );
+  if (!comparePassword) {
+    return res.render("user/changePassword", {
+      pageTitle: "Password Change",
+      errorMessage: "Old Password Not Same",
+    });
+  }
+  const user = await User.findByIdAndUpdate(_id, { password: newPassword });
+  req.session.user.password = newPassword;
+  await user.save();
+  console.log(user.password);
   return res.redirect("/");
 };
