@@ -154,12 +154,14 @@ export const getEdit = (req, res) => {
 
 // look here =================================
 export const postEdit = async (req, res) => {
-  const {
+  let {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl },
     },
     body: { username, email, realname, address },
+    file: { path },
   } = req;
+  file ? (avatarUrl = path) : avatarUrl;
   if (req.session.user.username !== username) {
     const existId = await User.exists({ username });
     if (existId) {
@@ -220,6 +222,5 @@ export const postChangePassword = async (req, res) => {
   const user = await User.findByIdAndUpdate(_id, { password: newPassword });
   req.session.user.password = newPassword;
   await user.save();
-  console.log(user.password);
   return res.redirect("/");
 };

@@ -1,9 +1,12 @@
 extends main 
 
 block content 
-    form(method="POST" class="flow" style="--flow-spacer: 1rem")
+    form(method="POST" enctype="multipart/form-data" class="flow" style="--flow-spacer: 1rem")
         if(errorMessage)
             p=errorMessage
+        img(src=user.avatarUrl width="100" height="100")
+        label(for="avatar") 프로필 사진
+        input(type="file" id="avatar" name="avatar" accept="image/*")
         input(name="username" type="text" placeholder="username" value=user.username)
         input(name="email" type="email" placeholder="email" value=user.email)
         input(name="realname" type="text" placeholder="realname" value=user.realname)
