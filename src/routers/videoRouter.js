@@ -1,8 +1,5 @@
 import express from "express";
-import { 
-  protectPrivate,
-  allowPublic,
-} from "../middlewares";
+import { protectPrivate, uploadVideo, allowPublic } from "../middlewares";
 import {
   play,
   getEdit,
@@ -14,8 +11,19 @@ import {
 const videoRouter = express.Router();
 
 videoRouter.route("/:id([0-9a-z]{24})").get(play);
-videoRouter.route("/:id([0-9a-z]{24})/edit").all(protectPrivate).post(postEdit).get(getEdit);
-videoRouter.route("/:id([0-9a-z]{24})/delete").all(protectPrivate).get(deleteVideo);
-videoRouter.route("/upload").post(postUpload).all(protectPrivate).get(getUpload);
-
+videoRouter
+  .route("/:id([0-9a-z]{24})/edit")
+  .all(protectPrivate)
+  .post(postEdit)
+  .get(getEdit);
+videoRouter
+  .route("/:id([0-9a-z]{24})/delete")
+  .all(protectPrivate)
+  .get(deleteVideo);
+videoRouter
+  .route("/upload")
+  .all(protectPrivate)
+  .get(getUpload)
+  .post(uploadVideo.single("video"), postUpload);
+videoRouter.use("/uploads/video", express.static("uploads/video"));
 export default videoRouter;

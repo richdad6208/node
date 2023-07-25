@@ -17,7 +17,7 @@ header(class="primary-header | bg-primary-300 padding-block-300")
                         li
                             a(href="/user/logout") LOGOUT
                         li
-                            a(href="/profile") #{user.realname}의 프로필
+                            a(href=`/user/profile/${user._id}`) #{user.realname}의 프로필
                     else
                         li
                             a(href="/join") JOIN

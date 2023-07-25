@@ -120,6 +120,7 @@ input {
 
 .nav-list {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--size-200);
 }
 .nav-list a {

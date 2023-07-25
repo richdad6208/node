@@ -224,3 +224,10 @@ export const postChangePassword = async (req, res) => {
   await user.save();
   return res.redirect("/");
 };
+
+export const profile = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+
+  return res.render("user/profile", { pageTitle: user.realname, user });
+};

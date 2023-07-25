@@ -17,4 +17,11 @@ export const allowPublic = (req, res, next) => {
   else return next();
 };
 
-export const uploadFile = multer({ dest: "uploads/" });
+export const uploadAvatar = multer({
+  dest: "uploads/avatar",
+  limit: { fileSize: 100000 },
+});
+export const uploadVideo = multer({
+  dest: "uploads/video",
+  limit: { fileSize: 10000000 },
+});

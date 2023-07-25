@@ -1,5 +1,5 @@
 import express from "express";
-import { protectPrivate, allowPublic, uploadFile } from "../middlewares";
+import { protectPrivate, allowPublic, uploadAvatar } from "../middlewares";
 import {
   loginGithubStart,
   loginGithubFinish,
@@ -8,6 +8,7 @@ import {
   postEdit,
   getChangePassword,
   postChangePassword,
+  profile,
 } from "../controllers/userController";
 const userRouter = express.Router();
 
@@ -16,7 +17,7 @@ userRouter
   .route("/edit")
   .all(protectPrivate)
   .get(getEdit)
-  .post(uploadFile.single("avatar"), postEdit);
+  .post(uploadAvatar.single("avatar"), postEdit);
 userRouter
   .route("/changePassword")
   .all(protectPrivate)
@@ -24,5 +25,8 @@ userRouter
   .post(postChangePassword);
 userRouter.route("/github/start").all(allowPublic).get(loginGithubStart);
 userRouter.route("/github/finish").all(allowPublic).get(loginGithubFinish);
+userRouter.use("/uploads/avatar", express.static("uploads/avatar"));
+userRouter.route("/profile/:id").get(profile);
+
 
 export default userRouter;

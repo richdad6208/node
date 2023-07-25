@@ -25,21 +25,17 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
+  const { file } = req;
+  const { _id } = req.session.user;
   const { title, description, hashtags } = req.body;
-  try {
-    await Video.create({
-      title,
-      description,
-      hashtags: Video.formatHashtags(hashtags),
-    });
-    res.redirect("/");
-  } catch (error) {
-    console.log(error._message);
-    return res.render("upload", {
-      pageTitle: "upload",
-      errorMessage: error._message,
-    });
-  }
+  await Video.create({
+    title,
+    videoUrl: file.path,
+    description,
+    hashtags: Video.formatHashtags(hashtags),
+    owner: _id,
+  });
+  res.redirect("/");
 };
 
 export const getEdit = async (req, res) => {
