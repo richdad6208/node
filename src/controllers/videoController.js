@@ -1,4 +1,5 @@
 import Video from "../models/Video";
+import User from "../models/User";
 
 export const home = async (req, res) => {
   try {
@@ -12,9 +13,16 @@ export const play = async (req, res) => {
   try {
     const { id } = req.params;
     const video = await Video.findById(id);
+    const ownerUser = await User.findById(video.owner);
     if (!video) {
       return res.status(404).render("404");
-    } else return res.render("play", { pageTitle: "PLAY VIDEO", video, id });
+    } else
+      return res.render("play", {
+        pageTitle: "PLAY VIDEO",
+        video,
+        id,
+        ownerUser,
+      });
   } catch {
     return res.redirect("home", { pageTitle: "home" });
   }

@@ -6,10 +6,12 @@ block content
             div(class="container")    
                 div(class="flow")    
                     a(class="button" href="/video/upload") UPLOAD
-                    each video in videos
-                        +video(video)
-                    else 
-                        li(style="list-style:none;") "sorry. nothing video"
+                    ul(role="list")
+                        each video in videos 
+                            li
+                                a(class="block" href=`/video/${video.id}`) #{video.title}
+                        else 
+                            li(style="list-style:none;") "sorry. nothing video"
                     
                     
                     //-     ul(class="video-list | bg-accent-100" role="list")

@@ -1,10 +1,12 @@
 mixin video(video)
-    a(class="block" href=`/video/${video.id}`)
         h1(class="fs-500 text-align-center fw-bold")=video.title
         ul(class="video-list | bg-accent-100 flow" style="--flow-spacer: 1rem" role="list")
-            li 
-                video(src=`${video.videoUrl}` controls)    
+            video(src=`${video.videoUrl}` controls)   
+            if ownerUser 
+                li uploaded by #{ownerUser.username} 
             li description: #{video.description}
-            each hashtag in video.hashtags 
-                li=hashtag
-        
+            if user._id===video.owner
+                li 
+                    a(class="button") edit 
+                li
+                    a(class="button" href=`/video/${id}/delete`) delete
