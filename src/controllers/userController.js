@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
@@ -227,7 +228,10 @@ export const postChangePassword = async (req, res) => {
 
 export const profile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id);
-
-  return res.render("user/profile", { pageTitle: user.realname, user });
+  const user = await User.findById(id).populate("videos");
+  console.log(user);
+  return res.render("user/profile", {
+    pageTitle: user.realname,
+    user,
+  });
 };

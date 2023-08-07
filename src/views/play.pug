@@ -2,11 +2,13 @@ extends main
 include ../mixins/video
 
 block content 
-    div(class="flow | text-align-right")
+    div(class="flow | text-align-left" style="--flow-spacer: 1rem;")
         video(src=`${video.videoUrl}` controls)
-        small=video.createdAt
-        small=ownerUser.username 
-        if user._id===video.owner
+        p=video.title
+        p=video.createdAt
+        p
+            a(href=`/user/profile/${video.owner._id}`)=video.owner.username
+        if String(user._id)===String(video.owner._id)
             a(class="button" href=`/video/${id}/edit`) Edit  
             a(class="button" data-type="warn" href=`/video/${id}/delete`) Delete
             

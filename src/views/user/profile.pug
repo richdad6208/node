@@ -1,4 +1,8 @@
 extends ../main
 
 block content 
-    h1 hellow
+    each video in user.videos
+        li
+            a(href=`/video/${video._id}`)=video.title
+    else
+        li no have videos

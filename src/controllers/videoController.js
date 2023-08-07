@@ -12,8 +12,8 @@ export const home = async (req, res) => {
 export const play = async (req, res) => {
   try {
     const { id } = req.params;
-    const video = await Video.findById(id);
-    const ownerUser = await User.findById(video.owner);
+    const video = await Video.findById(id).populate("owner");
+    console.log(video);
     if (!video) {
       return res.status(404).render("404");
     } else
@@ -21,7 +21,6 @@ export const play = async (req, res) => {
         pageTitle: "PLAY VIDEO",
         video,
         id,
-        ownerUser,
       });
   } catch {
     return res.redirect("home", { pageTitle: "home" });
@@ -36,13 +35,16 @@ export const postUpload = async (req, res) => {
   const { file } = req;
   const { _id } = req.session.user;
   const { title, description, hashtags } = req.body;
-  await Video.create({
+  const newVideo = await Video.create({
     title,
     videoUrl: file.path,
     description,
     hashtags: Video.formatHashtags(hashtags),
     owner: _id,
   });
+  const user = await User.findById(_id);
+  user.videos.push(newVideo._id);
+  user.save();
   res.redirect("/");
 };
 
