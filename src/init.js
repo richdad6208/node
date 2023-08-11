@@ -4,5 +4,5 @@ import "./models/User";
 import "./db";
 import app from "./server";
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`⭕ Now You Connected Localhost:4000`));
