@@ -1,8 +1,10 @@
 extends ../main
 
 block content 
-    each video in user.videos
-        li
-            a(href=`/video/${video._id}`)=video.title
-    else
-        li no have videos
+    div(class="flow")
+        each video in user.videos
+            li
+                a(href=`/video/${video._id}`)=video.title
+        else
+            li no have videos
+        a(href="/user/edit" class="button") Edit profile

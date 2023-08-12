@@ -77,7 +77,8 @@ a:not([class]) {
 
 /* Make images easier to work with */
 img,
-picture {
+picture,
+svg {
   max-width: 100%;
   display: block;
 }
@@ -105,7 +106,9 @@ body {
   font-family: var(--ff-primary);
   font-size: var(--fs-300);
 }
-
+section {
+  min-height: 40vh;
+}
 h1 {
   font-size: 2rem;
 }
@@ -120,8 +123,12 @@ input {
 
 .nav-list {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: var(--size-200);
+}
+.nav-list > li {
+  height: fit-content;
 }
 .nav-list a {
   padding: var(--size-300);
@@ -131,7 +138,17 @@ input {
 .home-content {
   height: 100%;
 }
-
+/* badge */
+.badge__avatar {
+  width: 100px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.badge__avatar img {
+  object-fit: cover;
+  height: 100%;
+}
 /* button */
 
 .button {

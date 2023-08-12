@@ -3,11 +3,6 @@ import Video from "../models/Video";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
-export const userList = async (req, res) => {
-  const users = await User.find({});
-  res.render("userList", { pageTitle: "User List", users });
-};
-
 export const getJoin = (req, res) => {
   res.render("createAccount", { pageTitle: "create new account" });
 };
@@ -189,6 +184,7 @@ export const postEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = fixedUser;
+  console.log(res.locals.user.avatarUrl);
   return res.redirect("/user/edit");
 };
 // look here =================================
