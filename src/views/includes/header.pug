@@ -16,8 +16,8 @@ header(class="primary-header | bg-primary-300 padding-block-300")
                             a(href="/user/logout") LOGOUT
                         li
                             a(href=`/user/profile/${user._id}`) 
-                                div(class="badge__avatar")    
-                                    img(src=`/${user.avatarUrl}`)
+                                div(class="badge__avatar")
+                                    img(src=`${user.avatarUrl}`)
                                 span #{user.realname}의 프로필
                     else
                         li

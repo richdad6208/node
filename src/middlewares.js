@@ -7,6 +7,7 @@ const s3 = new S3Client({
     accessKeyId: process.env.AWS_ID,
     secretAccessKey: process.env.AWS_SECRET,
   },
+  region: "ap-northeast-2",
 });
 
 export const localMiddleWare = (req, res, next) => {
@@ -24,9 +25,10 @@ export const allowPublic = (req, res, next) => {
   if (res.locals.loggedIn) return res.redirect("/");
   else return next();
 };
-const multerS3Upload = multerS3({
+export const multerS3Upload = multerS3({
   s3: s3,
   bucket: "richdad6208node",
+  acl: "public-read",
 });
 export const uploadAvatar = multer({
   dest: "uploads/avatar",

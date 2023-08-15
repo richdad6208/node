@@ -8,7 +8,6 @@ import {
   postLogin,
 } from "../controllers/userController";
 const rootRouter = express.Router();
-
 rootRouter.get("", home);
 rootRouter.get("/search", search);
 rootRouter.route("/join").all(allowPublic).get(getJoin).post(postJoin);

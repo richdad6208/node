@@ -30,10 +30,12 @@ export const postJoin = async (req, res) => {
     await User.create({
       username,
       password,
+      avatarUrl: "../../images/account-icon-default.png",
       email,
       realname,
       address,
     });
+
     return res.redirect("/login");
   } catch (error) {
     console.log("error:", error);
@@ -144,6 +146,7 @@ export const logout = (req, res) => {
 };
 
 export const getEdit = (req, res) => {
+  console.log(res.locals.user.avatarUrl);
   return res.render("userEdit");
 };
 
@@ -176,7 +179,7 @@ export const postEdit = async (req, res) => {
     _id,
     {
       username,
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
       email,
       realname,
       address,
@@ -184,7 +187,6 @@ export const postEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = fixedUser;
-  console.log(res.locals.user.avatarUrl);
   return res.redirect("/user/edit");
 };
 // look here =================================
