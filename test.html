@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100%;
+      }
+      .item {
+        margin: 1000px;
+        width: 100px;
+        height: 100px;
+        background: violet;
+      }
+      .wrapper {
+        height: 1000vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="item"></div>
+    </div>
+    <script>
+      const box = document.querySelector(".item");
+      document.body.addEventListener("click", moveScroll);
+
+      function moveScroll() {
+        console.log("hi");
+        window.scrollTo({
+          behavior: "smooth",
+          left: box.offsetLeft,
+          top: box.offsetTop,
+        });
+      }
+    </script>
+  </body>
+</html>

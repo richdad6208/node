@@ -13,7 +13,6 @@ export const play = async (req, res) => {
   try {
     const { id } = req.params;
     const video = await Video.findById(id).populate("owner");
-    console.log(video);
     if (!video) {
       return res.status(404).render("404");
     } else
@@ -37,11 +36,12 @@ export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
   const newVideo = await Video.create({
     title,
-    videoUrl: file.path,
+    videoUrl: file ? file.path : undefined,
     description,
     hashtags: Video.formatHashtags(hashtags),
     owner: _id,
   });
+  console.log(newVideo);
   const user = await User.findById(_id);
   user.videos.push(newVideo._id);
   user.save();

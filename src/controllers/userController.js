@@ -167,6 +167,7 @@ export const postEdit = async (req, res) => {
       });
     }
   }
+  console.log(file);
   if (req.session.user.email !== email) {
     const existEmail = await User.exists({ email });
     if (existEmail) {
@@ -175,11 +176,12 @@ export const postEdit = async (req, res) => {
       });
     }
   }
+  const isHeroku = process.env.NODE_ENV === "production";
   const fixedUser = await User.findByIdAndUpdate(
     _id,
     {
       username,
-      avatarUrl: file ? file.location : avatarUrl,
+      avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
       email,
       realname,
       address,
