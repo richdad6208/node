@@ -12,13 +12,11 @@ const s3 = new S3Client({
 });
 const herokuUploadImage = multerS3({
   s3: s3,
-  // bucket: "richdad6208node/image",
   bucket: "richdad6208node",
   acl: "public-read",
 });
 const herokuUploadVideo = multerS3({
   s3: s3,
-  // bucket: "richdad6208node/video",
   bucket: "richdad6208node",
   acl: "public-read",
 });
