@@ -12,13 +12,23 @@ const s3 = new S3Client({
 });
 const herokuUploadImage = multerS3({
   s3: s3,
-  bucket: "richdad6208node.image",
+  bucket: "richdad6208node",
   acl: "public-read",
+  key: function (req, file, cb) {
+    const newFileName = `${Date.now()}-${file.originalname}`;
+    const fullPath = `image/${newFileName}`;
+    cb(null, fullPath);
+  },
 });
 const herokuUploadVideo = multerS3({
   s3: s3,
   bucket: "richdad6208node",
   acl: "public-read",
+  key: function (req, file, cb) {
+    const newFileName = `${Date.now()}-${file.originalname}`;
+    const fullPath = `video/${newFileName}`;
+    cb(null, fullPath);
+  },
 });
 export const localMiddleWare = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -40,10 +50,12 @@ export const allowPublic = (req, res, next) => {
 export const uploadAvatar = multer({
   dest: "uploads/avatar",
   limit: { fileSize: 100000 },
-  storage: isHeroku ? herokuUploadImage : undefined,
+  // storage: isHeroku ? herokuUploadImage : undefined,
+  storage: herokuUploadImage,
 });
 export const uploadVideo = multer({
   dest: "uploads/video",
   limit: { fileSize: 10000000 },
-  storage: isHeroku ? herokuUploadVideo : undefined,
+  // storage: isHeroku ? herokuUploadVideo : undefined,
+  storage: herokuUploadVideo,
 });
