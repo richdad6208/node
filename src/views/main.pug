@@ -1,3 +1,5 @@
+include ../mixins/messages
+
 doctype html
 html(lang="en")
     head
@@ -11,6 +13,8 @@ html(lang="en")
         include includes/header.pug 
         section(class="bg-primary-400 padding-block-700")
             div(class="container")
+                if messages.error 
+                    +messages("error", "Don't have authorization")
                 h2(class="fs-600")=pageTitle
                 block content
         include includes/footer.pug

@@ -38,19 +38,23 @@ export const localMiddleWare = (req, res, next) => {
 };
 
 export const protectPrivate = (req, res, next) => {
-  if (!res.locals.loggedIn) return res.redirect("/login");
-  else return next();
+  if (!res.locals.loggedIn) {
+    req.flash("error", "Login First");
+    return res.redirect("/login");
+  } else return next();
 };
 
 export const allowPublic = (req, res, next) => {
-  if (res.locals.loggedIn) return res.redirect("/");
-  else return next();
+  if (res.locals.loggedIn) {
+    req.flash("error", "This page for Public")
+    return res.redirect("/")
+  } else return next();
 };
 
 export const uploadAvatar = multer({
   dest: "uploads/avatar",
   limit: { fileSize: 100000 },
-  storage: herokuUploadImage,
+  storage: isHeroku ? herokuUploadImage : undefined,
 });
 export const uploadVideo = multer({
   dest: "uploads/video",

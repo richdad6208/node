@@ -2,12 +2,14 @@ import express from "express";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import flash from "express-flash";
 import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import { localMiddleWare } from "./middlewares";
 const app = express();
 
+app.use(flash());
 app.set("view engine", "pug");
 app.set("views", "./src/views");
 app.use(morgan("dev"));
