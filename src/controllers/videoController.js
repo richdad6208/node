@@ -15,12 +15,14 @@ export const play = async (req, res) => {
     const video = await Video.findById(id).populate("owner");
     if (!video) {
       return res.status(404).render("404");
-    } else
+    } else {
+      console.log(video);
       return res.render("play", {
         pageTitle: "PLAY VIDEO",
         video,
         id,
       });
+    }
   } catch {
     return res.redirect("home", { pageTitle: "home" });
   }
@@ -34,14 +36,18 @@ export const postUpload = async (req, res) => {
   const { file } = req;
   const { _id } = req.session.user;
   const { title, description, hashtags } = req.body;
+  console.log(file);
   const newVideo = await Video.create({
     title,
-    videoUrl: file ? file.path : undefined,
+    videoUrl: file
+      ? res.locals.isHeroku
+        ? file.location
+        : file.path
+      : undefined,
     description,
     hashtags: Video.formatHashtags(hashtags),
     owner: _id,
   });
-  console.log(newVideo);
   const user = await User.findById(_id);
   user.videos.push(newVideo._id);
   user.save();

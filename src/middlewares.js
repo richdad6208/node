@@ -50,12 +50,10 @@ export const allowPublic = (req, res, next) => {
 export const uploadAvatar = multer({
   dest: "uploads/avatar",
   limit: { fileSize: 100000 },
-  // storage: isHeroku ? herokuUploadImage : undefined,
   storage: herokuUploadImage,
 });
 export const uploadVideo = multer({
   dest: "uploads/video",
   limit: { fileSize: 10000000 },
-  // storage: isHeroku ? herokuUploadVideo : undefined,
-  storage: herokuUploadVideo,
+  storage: isHeroku ? herokuUploadVideo : undefined,
 });
