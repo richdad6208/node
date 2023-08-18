@@ -1,12 +1,16 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const path = require("path");
+const BASE_URL = "./src/client/js/";
 module.exports = {
-  entry: "./src/client/js/main.js",
+  entry: {
+    main: BASE_URL + "main.js",
+    comment: BASE_URL + "comment.js",
+  },
   plugins: [new MiniCssExtractPlugin({ filename: "css/style.css" })],
   output: {
     clean: true,
-    filename: "js/main.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"),
   },
   module: {

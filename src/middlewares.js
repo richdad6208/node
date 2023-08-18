@@ -46,8 +46,8 @@ export const protectPrivate = (req, res, next) => {
 
 export const allowPublic = (req, res, next) => {
   if (res.locals.loggedIn) {
-    req.flash("error", "This page for Public")
-    return res.redirect("/")
+    req.flash("error", "This page for Public");
+    return res.redirect("/");
   } else return next();
 };
 

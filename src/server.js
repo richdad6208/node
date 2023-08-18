@@ -1,5 +1,6 @@
 import express from "express";
 import rootRouter from "./routers/rootRouter";
+import apiRouter from "./routers/apiRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 import flash from "express-flash";
@@ -29,5 +30,6 @@ app.use("/assets", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/video", videoRouter);
 app.use("/user", userRouter);
+app.use("/api", apiRouter);
 
 export default app;

@@ -2,7 +2,7 @@ extends main
 include ../mixins/video
 
 block content 
-    div(class="flow | text-align-left" style="--flow-spacer: 1rem;")
+    div(class="video__play | flow text-align-left" style="--flow-spacer: 1rem;" data-id = `${video.id}`)
         video(src=`${video.videoUrl}` controls)
         p=video.title
         p=video.createdAt
@@ -11,4 +11,13 @@ block content
         if String(user._id)===String(video.owner._id)
             a(class="button" href=`/video/${id}/edit`) Edit  
             a(class="button" data-type="warn" href=`/video/${id}/delete`) Delete
-            
+    hr
+    if Object.entries(user).length
+        div
+            form.video__comment(method="post" style="color:black")
+                p comments
+                textarea(cols="25", rows="4") 
+                button 댓글달기
+block script 
+    if Object.entries(user).length
+        script(src="../assets/js/comment.js") 

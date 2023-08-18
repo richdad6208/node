@@ -16,7 +16,6 @@ export const play = async (req, res) => {
     if (!video) {
       return res.status(404).render("404");
     } else {
-      console.log(video);
       return res.render("play", {
         pageTitle: "PLAY VIDEO",
         video,
@@ -36,7 +35,6 @@ export const postUpload = async (req, res) => {
   const { file } = req;
   const { _id } = req.session.user;
   const { title, description, hashtags } = req.body;
-  console.log(file);
   const newVideo = await Video.create({
     title,
     videoUrl: file
@@ -118,4 +116,11 @@ export const search = async (req, res) => {
     res.render("search", { pageTitle: `keyword search: ${keyword}`, videos });
   }
   res.render("search", { pageTitle: "search", videos });
+};
+
+export const postComment = (req, res) => {
+  console.log("hi");
+  console.log(req.params);
+  console.log(req.body);
+  res.end();
 };
