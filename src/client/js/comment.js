@@ -1,15 +1,20 @@
 const form = document.querySelector(".video__comment");
 const textarea = form.querySelector("textarea");
 const videoPlay = document.querySelector(".video__play");
-
+const text = textarea.value;
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const videoId = videoPlay.dataset.id;
-  console.log("hi");
+  if (text === "") {
+    return;
+  }
   fetch(`/api/video/${videoId}/comment`, {
-    method: "POST",
-    body: {
-      text: textarea.value,
+    headers: {
+      "Content-Type": "application/json",
     },
+    method: "POST",
+    body: JSON.stringify({
+      text,
+    }),
   });
 });

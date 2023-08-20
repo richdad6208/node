@@ -20,21 +20,10 @@
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="item"></div>
-    </div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
     <script>
-      const box = document.querySelector(".item");
-      document.body.addEventListener("click", moveScroll);
-
-      function moveScroll() {
-        console.log("hi");
-        window.scrollTo({
-          behavior: "smooth",
-          left: box.offsetLeft,
-          top: box.offsetTop,
-        });
-      }
+      const textarea = document.querySelector("textarea");
+      console.log(textarea.firstChild);
     </script>
   </body>
 </html>

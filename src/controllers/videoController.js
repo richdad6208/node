@@ -119,8 +119,6 @@ export const search = async (req, res) => {
 };
 
 export const postComment = (req, res) => {
-  console.log("hi");
-  console.log(req.params);
-  console.log(req.body);
+  console.log(req.body.text);
   res.end();
 };
