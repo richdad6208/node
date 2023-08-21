@@ -1,14 +1,15 @@
 const form = document.querySelector(".video__comment");
 const textarea = form.querySelector("textarea");
 const videoPlay = document.querySelector(".video__play");
-const text = textarea.value;
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  const text = textarea.value;
   const videoId = videoPlay.dataset.id;
+  console.log("comment.js", text);
   if (text === "") {
     return;
   }
-  fetch(`/api/video/${videoId}/comment`, {
+  await fetch(`/api/video/${videoId}/comment`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,4 +18,6 @@ form.addEventListener("submit", (e) => {
       text,
     }),
   });
+  textarea.value = "";
+  // window.location.reload();
 });

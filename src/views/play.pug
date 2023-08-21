@@ -18,6 +18,12 @@ block content
                 p comments
                 textarea(cols="25", rows="4") 
                 button 댓글달기
+        ul
+            each comment in video.comments
+                li=comment.text
+            else 
+                li 댓글이 없습니다
+            
 block script 
     if Object.entries(user).length
         script(src="../assets/js/comment.js") 

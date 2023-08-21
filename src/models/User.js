@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
   realname: { type: String, required: true },
   address: { type: String },
   videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
-  comment: [
+  comments: [
     { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Comment" },
   ],
 });

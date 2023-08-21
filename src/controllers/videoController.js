@@ -1,5 +1,6 @@
 import Video from "../models/Video";
 import User from "../models/User";
+import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
   try {
@@ -12,7 +13,10 @@ export const home = async (req, res) => {
 export const play = async (req, res) => {
   try {
     const { id } = req.params;
-    const video = await Video.findById(id).populate("owner");
+    const video = await Video.findById(id)
+      .populate("owner")
+      .populate("comments");
+    console.log(video);
     if (!video) {
       return res.status(404).render("404");
     } else {
@@ -118,7 +122,28 @@ export const search = async (req, res) => {
   res.render("search", { pageTitle: "search", videos });
 };
 
-export const postComment = (req, res) => {
-  console.log(req.body.text);
-  res.end();
+export const postComment = async (req, res) => {
+  const {
+    params: { id },
+    session: { user },
+    body: { text },
+  } = req;
+
+  console.log(req.body);
+
+  // const video = await Video.findById(id);
+  // if (!video) {
+  //   return res.sendStatus(404);
+  // }
+
+  // const comment = await Comment.create({
+  //   text,
+  //   user: user._id,
+  //   video: id,
+  // });
+
+  // video.comments.push(comment._id);
+  // console.log(video);
+  // await video.save();
+  return res.sendStatus(201);
 };
