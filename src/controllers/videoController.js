@@ -129,21 +129,18 @@ export const postComment = async (req, res) => {
     body: { text },
   } = req;
 
-  console.log(req.body);
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
 
-  // const video = await Video.findById(id);
-  // if (!video) {
-  //   return res.sendStatus(404);
-  // }
+  const comment = await Comment.create({
+    text,
+    user: user._id,
+    video: id,
+  });
 
-  // const comment = await Comment.create({
-  //   text,
-  //   user: user._id,
-  //   video: id,
-  // });
-
-  // video.comments.push(comment._id);
-  // console.log(video);
-  // await video.save();
+  video.comments.push(comment._id);
+  await video.save();
   return res.sendStatus(201);
 };
