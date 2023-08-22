@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
 :root {
   --fs-100: 0.5rem;
   --fs-200: 0.75rem;
@@ -27,7 +34,7 @@
   --crl-neutral-100: hsl(0, 0, 100%);
   --crl-neutral-800: hsl(250, 36%, 23%);
   --crl-neutral-900: hsl(0, 0%, 0%);
-  --ff-primary: "Josefin Sans", "Noto Sans KR", sans-serif;
+  --ff-primary: "Pretendard-Regular", sans-serif;
   --ff-accent: "Yeseva One", cursive;
 
   --fw-bold: 700;
@@ -119,6 +126,9 @@ input {
   padding: var(--size-100) var(--size-200);
   color: black;
 }
+textarea {
+  color: black;
+}
 /* primary-navigation */
 
 .nav-list {
@@ -159,6 +169,7 @@ input {
   border-radius: 100vmax;
   color: bold;
   font-weight: bold;
+  cursor: pointer;
 }
 .button[data-type="warn"] {
   background: yellow;

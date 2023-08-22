@@ -6,7 +6,8 @@ import {
   postEdit,
   postUpload,
   getUpload,
-  deleteVideo,
+  getDeleteVideo,
+  // postDeleteVideo,
 } from "../controllers/videoController";
 const videoRouter = express.Router();
 
@@ -19,7 +20,7 @@ videoRouter
 videoRouter
   .route("/:id([0-9a-z]{24})/delete")
   .all(protectPrivate)
-  .get(deleteVideo);
+  .get(getDeleteVideo);
 videoRouter
   .route("/upload")
   .all(protectPrivate)

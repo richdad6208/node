@@ -1,7 +1,8 @@
+const formBtn = document.querySelector(".video__comment button");
 const form = document.querySelector(".video__comment");
 const textarea = form.querySelector("textarea");
 const videoPlay = document.querySelector(".video__play");
-form.addEventListener("submit", async (e) => {
+formBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const text = textarea.value;
   const videoId = videoPlay.dataset.id;
@@ -9,7 +10,7 @@ form.addEventListener("submit", async (e) => {
   if (text === "") {
     return;
   }
-  await fetch(`/api/video/${videoId}/comment`, {
+  fetch(`/api/video/${videoId}/comment`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,7 +18,10 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify({
       text,
     }),
-  });
-  textarea.value = "";
-  // window.location.reload();
+  })
+    .then(() => {
+      textarea.value = "";
+      window.location.reload();
+    })
+    .catch((err) => console.log(err));
 });
