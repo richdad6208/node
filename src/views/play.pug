@@ -18,9 +18,9 @@ block content
                 p.video__comment__title comments
                 textarea.video__comment__body(cols="25", rows="4") 
                 button(style="color:black") 댓글달기
-    ul
-        each comment in video.comments
-            li=comment.text
+    ul.video__comment__list
+        each comment in video.comments.reverse()
+            li.video__comment__item=comment.text
         else 
             li 댓글이 없습니다
             

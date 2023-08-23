@@ -58,8 +58,8 @@
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role="list"],
-ol[role="list"] {
+ul,
+ol {
   list-style: none;
 }
 
@@ -129,6 +129,7 @@ input {
 textarea {
   color: black;
 }
+
 /* primary-navigation */
 
 .nav-list {
@@ -230,6 +231,26 @@ textarea {
   width: 20rem;
   padding: 2em;
   font-size: 1.2rem;
+}
+/* comments */
+.video__comment__list {
+  background: #ccc;
+  border-radius: 10px;
+  width: min(23rem, 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  margin-top: 20px;
+}
+.video__comment__item {
+  background: white;
+  color: black;
+  border-radius: 100vmax;
+  margin-top: 10px;
+  width: min(20rem, 80%);
+  padding: 0.3em 1em;
+  font-size: 15px;
 }
 /* utility */
 
