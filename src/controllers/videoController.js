@@ -25,8 +25,8 @@ export const play = async (req, res) => {
         id,
       });
     }
-  } catch {
-    return res.redirect("home", { pageTitle: "home" });
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -138,6 +138,7 @@ export const postComment = async (req, res) => {
 
   const video = await Video.findById(id);
   if (!video) {
+    console.log("not there video");
     return res.sendStatus(404);
   }
 

@@ -20,7 +20,10 @@ block content
                 button(style="color:black") 댓글달기
     ul.video__comment__list
         each comment in video.comments.reverse()
-            li.video__comment__item=comment.text
+            li.video__comment__item
+                span=comment.text
+                if comment.user.toString() === user._id.toString()
+                    a(data-userId=`${user._id}` data-commentId = `${comment._id}`).video__comment__delete ❌
         else 
             li 댓글이 없습니다
             

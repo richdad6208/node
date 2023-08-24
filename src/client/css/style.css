@@ -251,6 +251,12 @@ textarea {
   width: min(20rem, 80%);
   padding: 0.3em 1em;
   font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.video__comment__delete {
+  cursor: pointer;
 }
 /* utility */
 

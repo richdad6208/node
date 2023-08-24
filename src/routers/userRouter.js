@@ -9,6 +9,7 @@ import {
   getChangePassword,
   postChangePassword,
   profile,
+  deleteComment,
 } from "../controllers/userController";
 const userRouter = express.Router();
 
@@ -27,6 +28,8 @@ userRouter.route("/github/start").all(allowPublic).get(loginGithubStart);
 userRouter.route("/github/finish").all(allowPublic).get(loginGithubFinish);
 userRouter.use("/uploads/avatar", express.static("uploads/avatar"));
 userRouter.route("/profile/:id").get(profile);
-
+userRouter
+  .route("/:id([0-9a-z]{24})/:commentId([0-9a-z]{24})/delete")
+  .delete(deleteComment);
 
 export default userRouter;

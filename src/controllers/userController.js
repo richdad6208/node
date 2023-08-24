@@ -141,6 +141,7 @@ export const loginGithubFinish = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+  res.locals.loggedIn = false;
   req.session.destroy();
   return res.redirect("/login");
 };
@@ -232,4 +233,9 @@ export const profile = async (req, res) => {
     pageTitle: user.realname,
     user,
   });
+};
+
+export const deleteComment = async (req, res) => {
+  console.log("hi");
+  res.redirect("/");
 };
