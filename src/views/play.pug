@@ -16,14 +16,14 @@ block content
         div
             form.video__comment(method="post")
                 p.video__comment__title comments
-                textarea.video__comment__body(cols="25", rows="4") 
+                textarea.video__comment__body(cols="25", rows="4" minlength="2")
                 button(style="color:black") 댓글달기
     ul.video__comment__list
         each comment in video.comments.reverse()
             li.video__comment__item
                 span=comment.text
-                if comment.user.toString() === user._id.toString()
-                    a(data-userId=`${user._id}` data-commentId = `${comment._id}`).video__comment__delete ❌
+                if comment.user.toString() === user._id
+                    a(data-user-id=`${user._id}` data-comment-id = `${comment._id}`).video__comment__delete ❌
         else 
             li 댓글이 없습니다
             

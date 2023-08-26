@@ -1,5 +1,6 @@
 import User from "../models/User";
 import Video from "../models/Video";
+import Comment from "../models/Comment";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
@@ -236,6 +237,12 @@ export const profile = async (req, res) => {
 };
 
 export const deleteComment = async (req, res) => {
-  console.log("hi");
-  res.redirect("/");
+  const id = req.params.commentId;
+  console.log(id);
+  try {
+    await Comment.deleteOne({ _id: id });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+  }
 };

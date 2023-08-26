@@ -135,7 +135,6 @@ export const postComment = async (req, res) => {
     session: { user },
     body: { text },
   } = req;
-
   const video = await Video.findById(id);
   if (!video) {
     console.log("not there video");
